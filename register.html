@@ -4,6 +4,36 @@
   <meta charset="UTF-8">
   <title>Register | TraditionWear</title>
   <link rel="stylesheet" href="register.css">
+  <script>
+    function registerUser(event) {
+      event.preventDefault();
+
+      const fullname = document.getElementById('fullname').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirm = document.getElementById('confirm_password').value;
+      const phone = document.getElementById('phone').value;
+      const course = document.getElementById('course').value;
+
+      if (password !== confirm) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const existing = users.find(u => u.email === email);
+      if (existing) {
+        alert("This email is already registered!");
+        return;
+      }
+
+      users.push({ fullname, email, password, phone, course });
+      localStorage.setItem("users", JSON.stringify(users));
+
+      alert("Registration successful!");
+      window.location.href = "login.html";
+    }
+  </script>
 </head>
 <body>
 
@@ -25,48 +55,32 @@
 
   <center>
     <h2>Register</h2>
-    <form action="register.php" method="post">
+    <form onsubmit="registerUser(event)">
       <table border="0" cellpadding="10">
         <tr>
           <td>Full Name:</td>
-          <td><input type="text" name="fullname" required></td>
+          <td><input type="text" id="fullname" required></td>
         </tr>
         <tr>
           <td>Email:</td>
-          <td>
-            <input type="email" name="email" required
-              pattern="^[^@\s]+@[^@\s]+\.(com|net|org|in|edu)$"
-              title="Enter a valid email (e.g. user@example.com)">
-          </td>
+          <td><input type="email" id="email" required></td>
         </tr>
         <tr>
           <td>Password:</td>
-          <td>
-            <input type="password" name="password" required
-              pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,16}"
-              title="Password must be 8-16 characters, with uppercase, lowercase, and special character.">
-          </td>
+          <td><input type="password" id="password" required></td>
         </tr>
         <tr>
           <td>Confirm Password:</td>
-          <td>
-            <input type="password" name="confirm_password" required
-              oninput="this.setCustomValidity(this.value !== password.value ? 'Passwords do not match.' : '')"
-              pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,16}">
-           </td>
+          <td><input type="password" id="confirm_password" required></td>
         </tr>
         <tr>
           <td>Phone Number:</td>
-          <td>
-            <input type="tel" name="phone" required
-              pattern="\d{10}"
-              title="Phone number must be exactly 10 digits.">
-          </td>
+          <td><input type="tel" id="phone" pattern="\d{10}" required></td>
         </tr>
         <tr>
           <td>Select Course:</td>
           <td>
-            <select name="course" required>
+            <select id="course" required>
               <option value="">-- Select --</option>
               <option value="Fashion Designing">Fashion Designing</option>
               <option value="Traditional Art">Traditional Art</option>
