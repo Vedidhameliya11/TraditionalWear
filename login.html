@@ -58,7 +58,7 @@
         message.textContent = "Login successful! Redirecting...";
         localStorage.setItem("loggedInUser", JSON.stringify(user));
         setTimeout(() => {
-          window.location.href = "welcome.html";
+          window.location.href = "dashboard.html";
         }, 1500);
       } else {
         message.style.color = "red";
@@ -69,3 +69,4 @@
 
 </body>
 </html>
+
