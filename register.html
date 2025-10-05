@@ -8,12 +8,12 @@
     function registerUser(event) {
       event.preventDefault();
 
-      const fullname = document.getElementById('fullname').value;
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      const confirm = document.getElementById('confirm_password').value;
-      const phone = document.getElementById('phone').value;
-      const course = document.getElementById('course').value;
+      const fullname = document.getElementById("fullname").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirm = document.getElementById("confirm_password").value;
+      const phone = document.getElementById("phone").value;
+      const course = document.getElementById("course").value;
 
       if (password !== confirm) {
         alert("Passwords do not match!");
@@ -21,9 +21,9 @@
       }
 
       const users = JSON.parse(localStorage.getItem("users")) || [];
-      const existing = users.find(u => u.email === email);
-      if (existing) {
-        alert("This email is already registered!");
+
+      if (users.find(u => u.email === email)) {
+        alert("User already registered with this email!");
         return;
       }
 
@@ -74,14 +74,14 @@
           <td><input type="password" id="confirm_password" required></td>
         </tr>
         <tr>
-          <td>Phone Number:</td>
+          <td>Phone:</td>
           <td><input type="tel" id="phone" pattern="\d{10}" required></td>
         </tr>
         <tr>
-          <td>Select Course:</td>
+          <td>Course:</td>
           <td>
             <select id="course" required>
-              <option value="">-- Select --</option>
+              <option value="">--Select--</option>
               <option value="Fashion Designing">Fashion Designing</option>
               <option value="Traditional Art">Traditional Art</option>
               <option value="Handloom Studies">Handloom Studies</option>
