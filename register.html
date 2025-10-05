@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register | TraditionWear</title>
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+
+  <table width="100%" border="0" cellpadding="10">
+    <tr>
+      <td align="left">
+        <img src="logo1.jpeg" alt="TraditionWear Logo" width="80" height="80">
+      </td>
+      <td align="center">
+        <h1>TraditionWear</h1>
+      </td>
+      <td align="right">
+        <a href="index.html">Home</a> |
+        <a href="login.html">Login</a>
+      </td>
+    </tr>
+  </table>
+  <hr>
+
+  <center>
+    <h2>Register</h2>
+    <form action="register.php" method="post">
+      <table border="0" cellpadding="10">
+        <tr>
+          <td>Full Name:</td>
+          <td><input type="text" name="fullname" required></td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td>
+            <input type="email" name="email" required
+              pattern="^[^@\s]+@[^@\s]+\.(com|net|org|in|edu)$"
+              title="Enter a valid email (e.g. user@example.com)">
+          </td>
+        </tr>
+        <tr>
+          <td>Password:</td>
+          <td>
+            <input type="password" name="password" required
+              pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,16}"
+              title="Password must be 8-16 characters, with uppercase, lowercase, and special character.">
+          </td>
+        </tr>
+        <tr>
+          <td>Confirm Password:</td>
+          <td>
+            <input type="password" name="confirm_password" required
+              oninput="this.setCustomValidity(this.value !== password.value ? 'Passwords do not match.' : '')"
+              pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,16}">
+           </td>
+        </tr>
+        <tr>
+          <td>Phone Number:</td>
+          <td>
+            <input type="tel" name="phone" required
+              pattern="\d{10}"
+              title="Phone number must be exactly 10 digits.">
+          </td>
+        </tr>
+        <tr>
+          <td>Select Course:</td>
+          <td>
+            <select name="course" required>
+              <option value="">-- Select --</option>
+              <option value="Fashion Designing">Fashion Designing</option>
+              <option value="Traditional Art">Traditional Art</option>
+              <option value="Handloom Studies">Handloom Studies</option>
+              <option value="Cultural Heritage">Cultural Heritage</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <button type="submit">Register</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </center>
+
+</body>
+</html>

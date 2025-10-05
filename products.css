@@ -1,0 +1,94 @@
+body {
+  background-image: url("images/background.jpg");
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+
+h1 {
+  font-size: 36px;
+  color: #8B0000;
+  margin: 0;
+}
+
+h2 {
+  font-size: 26px;
+  color: #B22222;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+
+a {
+  font-weight: bold;
+  color: #8B0000;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  border: 1px solid #ccc;
+}
+
+table.header-table {
+  width: 100%;
+}
+
+table {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-collapse: collapse;
+  width: 90%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  margin-bottom: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table th, table td {
+  text-align: center;
+  font-size: 16px;
+  padding: 12px;
+  border: 1px solid #ccc;
+}
+
+table th {
+  background-color: #8B0000;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+table img {
+  border-radius: 5px;
+}
+
+button {
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #A52A2A;
+}
+
+
+center {
+  margin-top: 40px;
+}

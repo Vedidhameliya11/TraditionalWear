@@ -1,0 +1,80 @@
+body {
+      background-image: url("images/background.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #8B0000;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 28px;
+      color: #B22222;
+    }
+
+    a {
+      font-weight: bold;
+      color: #8B0000;
+      text-decoration: none;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    hr {
+      border: 1px solid #ccc;
+    }
+
+    form {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 30px;
+      width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #8B0000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #A52A2A;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    td {
+      font-size: 16px;
+    }
+
+    center {
+      margin-top: 60px;
+    }

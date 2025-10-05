@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FAQ | TraditionWear</title>
+  <link rel="stylesheet" href="faq.css">
+</head>
+<body>
+
+  
+  <table width="100%" border="0" cellpadding="10">
+    <tr>
+      <td align="left">
+        <img src="logo1.jpeg" alt="TraditionWear Logo" width="80" height="80">
+      </td>
+      <td align="center">
+        <h1>TraditionWear</h1>
+      </td>
+      <td align="right">
+        <a href="index.html">Home</a>
+      </td>
+    </tr>
+  </table>
+  <hr>
+  <br>
+
+  <center>
+  <h2>Frequently Asked Questions</h2>
+  <table border="1" cellpadding="10" cellspacing="0" width="80%">
+    <tr class="faq-question">
+      <td>
+        <button class="toggle-btn">+</button>
+        <strong>Q1: What is TraditionWear?</strong>
+      </td>
+    </tr>
+    <tr class="faq-answer">
+      <td>A: TraditionWear is an online platform offering traditional Indian clothing for all occasions, supporting local artisans and promoting cultural fashion.</td>
+    </tr>
+
+    <tr class="faq-question">
+      <td>
+        <button class="toggle-btn">+</button>
+        <strong>Q2: How can I place an order?</strong>
+      </td>
+    </tr>
+    <tr class="faq-answer">
+      <td>A: Simply browse our products, add items to your cart, and proceed to checkout using our secure payment system.</td>
+    </tr>
+
+    <tr class="faq-question">
+      <td>
+        <button class="toggle-btn">+</button>
+        <strong>Q3: Do you offer cash on delivery?</strong>
+      </td>
+    </tr>
+    <tr class="faq-answer">
+      <td>A: Yes, we offer cash on delivery for selected locations in India.</td>
+    </tr>
+
+    <tr class="faq-question">
+      <td>
+        <button class="toggle-btn">+</button>
+        <strong>Q4: What is the return policy?</strong>
+      </td>
+    </tr>
+    <tr class="faq-answer">
+      <td>A: You can return any item within 7 days of delivery if it is unused and in its original packaging. Please contact our support team for help.</td>
+    </tr>
+
+    <tr class="faq-question">
+      <td>
+        <button class="toggle-btn">+</button>
+        <strong>Q5: How do I contact customer support?</strong>
+      </td>
+    </tr>
+    <tr class="faq-answer">
+      <td>A: Visit our Contact Us page or email us at support@traditionwear.com for assistance.</td>
+    </tr>
+  </table>
+</center>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const questions = document.querySelectorAll('.faq-question');
+    const answers = document.querySelectorAll('.faq-answer');
+
+    answers.forEach(answer => answer.style.display = 'none');
+
+    questions.forEach((question, index) => {
+      const button = question.querySelector('.toggle-btn');
+      const answer = question.nextElementSibling;
+
+      button.addEventListener('click', () => {
+        const isOpen = answer.style.display === 'table-row';
+
+        answers.forEach(ans => ans.style.display = 'none');
+        document.querySelectorAll('.toggle-btn').forEach(btn => btn.textContent = '+');
+
+        if (!isOpen) {
+          answer.style.display = 'table-row';
+          button.textContent = '-';
+        }
+      });
+    });
+  });
+</script>
+
+
+
+</body>
+</html>

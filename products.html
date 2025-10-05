@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Products | TraditionWear</title>
+  <link rel="stylesheet" href="products.css">
+</head>
+<body>
+
+  <header>
+    <table border="0" cellpadding="10" width="100%">
+      <tr>
+        <td align="left">
+          <img src="logo1.jpeg" alt="TraditionWear Logo" width="80" height="80">
+        </td>
+        <td align="center">
+          <h1>TraditionWear</h1>
+        </td>
+        <td align="right">
+          <a href="index.html">Home</a> |
+          <a href="addtocart.html">Cart</a>
+        </td>
+      </tr>
+    </table>
+  </header>
+
+  <hr>
+
+  <center>
+    <h2>Men's Traditional Wear</h2>
+    <table border="1" cellpadding="10" cellspacing="0" width="90%">
+      <tr>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <td><img src="download.jpeg" alt="Men's Kurta" width="100"></td>
+        <td>Men's Kurta</td>
+        <td>Classic cotton kurta for festivals and weddings.</td>
+        <td>₹1,200</td>
+        <td><input type="number" id="qtyKurta" value="1" min="1" style="width:50px;"></td>
+        <td><button onclick="addToCart('Men\'s Kurta', 1200, parseInt(document.getElementById('qtyKurta').value))">Add to Cart</button></td>
+      </tr>
+      <tr>
+        <td><img src="sherwani.jpg" alt="Sherwani" width="100"></td>
+        <td>Sherwani</td>
+        <td>Royal sherwani with embroidery and dupatta.</td>
+        <td>₹4,500</td>
+        <td><input type="number" id="qtySherwani" value="1" min="1" style="width:50px;"></td>
+        <td><button onclick="addToCart('Sherwani', 4500, parseInt(document.getElementById('qtySherwani').value))">Add to Cart</button></td>
+      </tr>
+    </table>
+  </center>
+
+  <br>
+
+  <center>
+    <h2>Women's Traditional Wear</h2>
+    <table border="1" cellpadding="10" cellspacing="0" width="90%">
+      <tr>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <td><img src="banarasi saree.jpg" alt="Banarasi Saree" width="100"></td>
+        <td>Banarasi Saree</td>
+        <td>Elegant silk saree with golden zari work from Varanasi.</td>
+        <td>₹3,500</td>
+        <td><input type="number" id="qtyBanarasi" value="1" min="1" style="width:50px;"></td>
+        <td><button onclick="addToCart('Banarasi Saree', 3500, parseInt(document.getElementById('qtyBanarasi').value))">Add to Cart</button></td>
+      </tr>
+      <tr>
+        <td><img src="kurti.jpg" alt="Chikankari Kurti" width="100"></td>
+        <td>Chikankari Kurti</td>
+        <td>Hand-embroidered Lucknowi kurti for women.</td>
+        <td>₹1,600</td>
+        <td><input type="number" id="qtyKurti" value="1" min="1" style="width:50px;"></td>
+        <td><button onclick="addToCart('Chikankari Kurti', 1600, parseInt(document.getElementById('qtyKurti').value))">Add to Cart</button></td>
+      </tr>
+      <tr>
+        <td><img src="punjabi.jpg" alt="Punjabi Suit" width="100"></td>
+        <td>Punjabi Suit</td>
+        <td>Traditional suit with embroidered dupatta.</td>
+        <td>₹2,800</td>
+        <td><input type="number" id="qtyPunjabi" value="1" min="1" style="width:50px;"></td>
+        <td><button onclick="addToCart('Punjabi Suit', 2800, parseInt(document.getElementById('qtyPunjabi').value))">Add to Cart</button></td>
+      </tr>
+    </table>
+  </center>
+
+  <br>
+
+  <center>
+    <h2>Children's Traditional Wear</h2>
+    <table border="1" cellpadding="10" cellspacing="0" width="90%">
+      <tr>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <td><img src="choli.jpg" alt="Kid's Lehenga" width="100"></td>
+        <td>Kid's Lehenga</td>
+        <td>Colorful lehenga choli set for girls.</td>
+        <td>₹1,000</td>
+        <td><input type="number" id="qtyLehenga" value="1" min="1" style="width:50px;"></td>
+        <td><button onclick="addToCart('Kid\'s Lehenga', 1000, parseInt(document.getElementById('qtyLehenga').value))">Add to Cart</button></td>
+      </tr>
+      <tr>
+        <td><img src="kurtakids.jpg" alt="Kid's Kurta" width="100"></td>
+        <td>Kid's Kurta Set</td>
+        <td>Festive kurta-pajama set for boys.</td>
+        <td>₹900</td>
+        <td><input type="number" id="qtyKurtaKids" value="1" min="1" style="width:50px;"></td>
+        <td><button onclick="addToCart('Kid\'s Kurta Set', 900, parseInt(document.getElementById('qtyKurtaKids').value))">Add to Cart</button></td>
+      </tr>
+    </table>
+  </center>
+
+  <script>
+    function addToCart(name, price, qty = 1) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let item = cart.find(i => i.name === name);
+      if(item) {
+        item.quantity += qty;
+      } else {
+        cart.push({name: name, price: price, quantity: qty});
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(name + " added to cart (" + qty + " pcs)!");
+    }
+  </script>
+
+</body>
+</html>

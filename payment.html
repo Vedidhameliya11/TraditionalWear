@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment | TraditionWear</title>
+  <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+
+  <table width="100%" border="0" cellpadding="10">
+    <tr>
+      <td align="left">
+        <img src="logo1.jpeg" alt="TraditionWear Logo" width="80" height="80">
+      </td>
+      <td align="center">
+        <h1>TraditionWear</h1>
+      </td>
+      <td align="right">
+        <a href="index.html">Home</a> |
+        <a href="products.html">Products</a>
+      </td>
+    </tr>
+  </table>
+
+  <hr><br>
+
+  <center>
+    <h2>Payment</h2>
+    <table border="1" cellpadding="10" cellspacing="0" width="70%" id="cartTable">
+      <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </table>
+    <h3 id="grandTotal">Grand Total: ₹0</h3>
+  </center>
+
+  <center>
+    <form>
+      <table border="0" cellpadding="10">
+        <!-- Address Section -->
+        <tr>
+          <td><b>Full Name:</b></td>
+          <td><input type="text" name="fullname" required></td>
+        </tr>
+        <tr>
+          <td><b>Address Line 1:</b></td>
+          <td><input type="text" name="address1" required></td>
+        </tr>
+        <tr>
+          <td><b>Address Line 2:</b></td>
+          <td><input type="text" name="address2"></td>
+        </tr>
+        <tr>
+          <td><b>City:</b></td>
+          <td><input type="text" name="city" required></td>
+        </tr>
+        <tr>
+          <td><b>State:</b></td>
+          <td><input type="text" name="state" required></td>
+        </tr>
+        <tr>
+          <td><b>ZIP / PIN Code:</b></td>
+          <td><input type="text" name="zip" required></td>
+        </tr>
+        <tr>
+          <td><b>Phone Number:</b></td>
+          <td><input type="tel" name="phone" required></td>
+        </tr>
+
+        <!-- Payment Section -->
+        <tr>
+          <td><b>Payment Method:</b></td>
+          <td>
+            <select name="paymentmethod" required>
+              <option value="">--Select Payment Method--</option>
+              <option value="card">Credit / Debit Card</option>
+              <option value="netbanking">Net Banking</option>
+              <option value="upi">UPI</option>
+              <option value="cod">Cash on Delivery</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td><b>Name on Card:</b></td>
+          <td><input type="text" name="cardname"></td>
+        </tr>
+        <tr>
+          <td><b>Card Number:</b></td>
+          <td><input type="text" name="cardnumber"></td>
+        </tr>
+        <tr>
+          <td><b>Expiration Date:</b></td>
+          <td><input type="month" name="expdate"></td>
+        </tr>
+        <tr>
+          <td><b>CVV:</b></td>
+          <td><input type="password" name="cvv" maxlength="4"></td>
+        </tr>
+
+        <tr>
+          <td colspan="2" align="center">
+            <button type="submit">Pay Now</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </center>
+
+  <script>
+    function displayCart() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let table = document.getElementById('cartTable');
+      let grandTotal = 0;
+      cart.forEach(item => {
+        let row = table.insertRow();
+        row.insertCell(0).innerText = item.name;
+        row.insertCell(1).innerText = "₹" + item.price;
+        row.insertCell(2).innerText = item.quantity;
+        let total = item.price * item.quantity;
+        row.insertCell(3).innerText = "₹" + total;
+        grandTotal += total;
+      });
+      document.getElementById('grandTotal').innerText = "Grand Total: ₹" + grandTotal;
+    }
+
+    displayCart();
+  </script>
+
+</body>
+</html>

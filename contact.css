@@ -1,0 +1,87 @@
+body {
+  background-image: url("images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+h1 {
+  font-size: 36px;
+  color: #8B0000;
+  margin: 0;
+}
+
+h2 {
+  font-size: 28px;
+  color: #B22222;
+  margin-bottom: 20px;
+}
+
+a {
+  font-weight: bold;
+  color: #8B0000;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  border: 1px solid #ccc;
+}
+
+table.header-table {
+  width: 100%;
+}
+
+form {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+  width: 50%;
+}
+
+form table {
+  width: 100%;
+}
+
+form td {
+  font-size: 16px;
+  padding: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #8B0000;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #A52A2A;
+}
+
+center {
+  margin-top: 50px;
+}

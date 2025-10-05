@@ -1,0 +1,91 @@
+body {
+  background-image: url("images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+h1 {
+  font-size: 36px;
+  color: #8B0000;
+  margin: 0;
+}
+
+h2 {
+  font-size: 28px;
+  color: #B22222;
+  margin-bottom: 20px;
+}
+
+a {
+  font-weight: bold;
+  color: #8B0000;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  border: 1px solid #ccc;
+}
+
+table {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+table td {
+  font-size: 16px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+table td strong {
+  color: #8B0000;
+}
+
+center {
+  margin-top: 40px;
+}
+
+
+
+/* .faq-question {
+  cursor: pointer;
+  background-color: #fdf2f2;
+  transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+  background-color: #ffe6e6;
+} */
+
+.toggle-btn {
+  float: right;
+  font-weight: bold;
+  font-size: 18px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #8B0000;
+}
+
+.faq-question {
+  background-color: #fdf2f2;
+  cursor: pointer;
+}
+
+.faq-question:hover {
+  background-color: #ffe6e6;
+}
+

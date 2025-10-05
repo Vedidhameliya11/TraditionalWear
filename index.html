@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TraditionWear | Home</title>
+   <link rel="stylesheet" href="index.css">
+</head>
+<body background="images/background.jpg">
+  <center>
+    <header>
+        
+      <table width="100%" border="0">
+        <tr>
+          <td align="left" width="20%">
+            <img src="logo1.jpeg" alt="TraditionWear Logo" width="60">
+          </td>
+          <td align="center" width="60%">
+            <h1>TraditionWear</h1>
+          </td>
+          <td align="right" width="20%">
+            <a href="login.html">Login</a> |
+            <a href="register.html">Register</a>
+          </td>
+        </tr>
+      </table>
+    </header>
+
+    <hr>
+
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="login.html">Login</a> |
+      <a href="register.html">Register</a> |
+      <a href="profile.html">Profile</a> |
+      <a href="admin.html">Admin</a> |
+      <a href="dashboard.html">Dashboard</a> |
+      <a href="about.html">About</a> |
+      <a href="products.html">Products</a> |
+      <a href="events.html">Events</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="addtocart.html">Add to Cart</a> |
+      <a href="payment.html">Payment</a> |
+      <a href="faq.html">FAQ</a>
+    </nav>
+
+    <main>
+      <h2>Welcome to the World of Traditional Fashion!</h2>
+      <p>Explore beautiful traditional clothing for every occasion.</p>
+      <div class="image-slider">
+  <button class="prev" onclick="changeSlide(-1)">❮</button>
+
+  <img class="slide-image active" src="logo.jpg" alt="Slide 1">
+  <img class="slide-image" src="tw4.jpg" alt="Slide 2">
+  <img class="slide-image" src="tdw.png" alt="Slide 3">
+  <img class="slide-image" src="tw2.jpg" alt="Slide 4">
+
+  <button class="next" onclick="changeSlide(1)">❯</button>
+</div>
+
+    </main>
+
+    <footer>
+      <p>© 2025 TraditionWear. All Rights Reserved.</p>
+    </footer>
+  </center>
+
+  <script>
+  let currentIndex = 0;
+  const slides = document.querySelectorAll('.slide-image');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+    });
+    slides[index].classList.add('active');
+  }
+
+  function changeSlide(direction) {
+    currentIndex += direction;
+    if (currentIndex < 0) {
+      currentIndex = slides.length - 1;
+    } else if (currentIndex >= slides.length) {
+      currentIndex = 0;
+    }
+    showSlide(currentIndex);
+  }
+
+  showSlide(currentIndex);
+</script>
+
+</body>
+</html>
