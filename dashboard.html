@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | TraditionWear</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <script>
+    function showUser() {
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+      if (!user) {
+        alert("Please log in first!");
+        window.location.href = "login.html";
+        return;
+      }
+
+      document.getElementById("welcome").innerText = "Welcome, " + user.fullname + "!";
+      document.getElementById("details").innerHTML = `
+        <p><b>Email:</b> ${user.email}</p>
+        <p><b>Phone:</b> ${user.phone}</p>
+        <p><b>Course:</b> ${user.course}</p>
+      `;
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      alert("Logged out successfully!");
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+<body onload="showUser()">
+
+  <table width="100%" border="0" cellpadding="10">
+    <tr>
+      <td align="left">
+        <img src="logo1.jpeg" alt="TraditionWear Logo" width="80" height="80">
+      </td>
+      <td align="center">
+        <h1>TraditionWear</h1>
+      </td>
+      <td align="right">
+        <a href="index.html">Home</a> |
+        <a href="#" onclick="logout()">Logout</a>
+      </td>
+    </tr>
+  </table>
+  <hr>
+
+  <center>
+    <h2 id="welcome"></h2>
+    <div id="details"></div>
+  </center>
+
+</body>
+</html>
