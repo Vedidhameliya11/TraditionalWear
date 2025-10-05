@@ -4,25 +4,6 @@
   <meta charset="UTF-8">
   <title>Login | TraditionWear</title>
   <link rel="stylesheet" href="login.css">
-  <script>
-    function loginUser(event) {
-      event.preventDefault();
-
-      const username = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-      const user = users.find(u => u.email === username && u.password === password);
-
-      if (user) {
-        localStorage.setItem("loggedInUser", JSON.stringify(user));
-        alert("Login successful! Welcome, " + user.fullname);
-        window.location.href = "dashboard.html";
-      } else {
-        alert("Invalid email or password!");
-      }
-    }
-  </script>
 </head>
 <body>
 
@@ -36,16 +17,14 @@
       </td>
       <td align="right">
         <a href="index.html">Home</a> |
-        <a href="register.html">Sign Up</a>
+        <a href="register.html">Register</a>
       </td>
     </tr>
   </table>
   <hr>
-  <br><br><br>
 
   <center>
     <h2>Login</h2>
-
     <form onsubmit="loginUser(event)">
       <table border="0" cellpadding="10">
         <tr>
@@ -62,8 +41,31 @@
           </td>
         </tr>
       </table>
+      <p id="message"></p>
     </form>
   </center>
+
+  <script>
+    function loginUser(event) {
+      event.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(u => u.email === email && u.password === password);
+      const message = document.getElementById("message");
+      if (user) {
+        message.style.color = "green";
+        message.textContent = "Login successful! Redirecting...";
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+        setTimeout(() => {
+          window.location.href = "welcome.html";
+        }, 1500);
+      } else {
+        message.style.color = "red";
+        message.textContent = "Invalid email or password.";
+      }
+    }
+  </script>
 
 </body>
 </html>
