@@ -64,16 +64,18 @@
         let removeCell = row.insertCell(4);
         let removeBtn = document.createElement('button');
         removeBtn.textContent = "Remove";
-        removeBtn.onclick = () => removeItem(index);
+        removeBtn.onclick = function() {
+          removeItem(item.name);
+        };
         removeCell.appendChild(removeBtn);
         grandTotal += total;
       });
       document.getElementById('grandTotal').innerText = "Grand Total: ₹" + grandTotal;
     }
 
-    function removeItem(index) {
+    function removeItem(name) {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.splice(index, 1);
+      cart = cart.filter(item => item.name !== name);
       localStorage.setItem('cart', JSON.stringify(cart));
       displayCart();
     }
