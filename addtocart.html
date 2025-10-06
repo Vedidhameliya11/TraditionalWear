@@ -65,7 +65,7 @@
         let removeBtn = document.createElement('button');
         removeBtn.textContent = "Remove";
         removeBtn.onclick = function() {
-          removeItem(item.name);
+          removeOneItem(index);
         };
         removeCell.appendChild(removeBtn);
         grandTotal += total;
@@ -73,9 +73,13 @@
       document.getElementById('grandTotal').innerText = "Grand Total: ₹" + grandTotal;
     }
 
-    function removeItem(name) {
+    function removeOneItem(index) {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart = cart.filter(item => item.name !== name);
+      if (cart[index].quantity > 1) {
+        cart[index].quantity -= 1;
+      } else {
+        cart.splice(index, 1);
+      }
       localStorage.setItem('cart', JSON.stringify(cart));
       displayCart();
     }
