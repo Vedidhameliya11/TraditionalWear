@@ -5,20 +5,49 @@
   <title>Dashboard | TraditionWear</title>
   <link rel="stylesheet" href="dashboard.css">
   <script>
-    function showUser() {
-      const user = JSON.parse(localStorage.getItem("loggedInUser"));
-      if (!user) {
+    function showDashboard() {
+      const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      // Check if anyone is logged in
+      if (!loggedInUser) {
         alert("Please log in first!");
         window.location.href = "login.html";
         return;
       }
 
-      document.getElementById("welcome").innerText = "Welcome, " + user.fullname + "!";
-      document.getElementById("details").innerHTML = `
-        <p><b>Email:</b> ${user.email}</p>
-        <p><b>Phone:</b> ${user.phone}</p>
-        <p><b>Course:</b> ${user.course}</p>
+      // Welcome message
+      document.getElementById("welcome").innerText = "Welcome, " + loggedInUser.fullname + "!";
+
+      // Show all user data
+      if (users.length === 0) {
+        document.getElementById("userTable").innerHTML = "<p>No users registered yet.</p>";
+        return;
+      }
+
+      let tableHTML = `
+        <table border="1" cellpadding="10" cellspacing="0">
+          <tr style="background-color:#f2f2f2;">
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Course</th>
+          </tr>
       `;
+
+      users.forEach(u => {
+        tableHTML += `
+          <tr>
+            <td>${u.fullname}</td>
+            <td>${u.email}</td>
+            <td>${u.phone}</td>
+            <td>${u.course}</td>
+          </tr>
+        `;
+      });
+
+      tableHTML += "</table>";
+      document.getElementById("userTable").innerHTML = tableHTML;
     }
 
     function logout() {
@@ -28,7 +57,7 @@
     }
   </script>
 </head>
-<body onload="showUser()">
+<body onload="showDashboard()">
 
   <table width="100%" border="0" cellpadding="10">
     <tr>
@@ -48,7 +77,8 @@
 
   <center>
     <h2 id="welcome"></h2>
-    <div id="details"></div>
+    <h3>All Registered Users</h3>
+    <div id="userTable"></div>
   </center>
 
 </body>
