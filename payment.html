@@ -38,9 +38,8 @@
   </center>
 
   <center>
-    <form>
+    <form id="paymentForm">
       <table border="0" cellpadding="10">
-        <!-- Address Section -->
         <tr>
           <td><b>Full Name:</b></td>
           <td><input type="text" name="fullname" required></td>
@@ -69,12 +68,10 @@
           <td><b>Phone Number:</b></td>
           <td><input type="tel" name="phone" required></td>
         </tr>
-
-        <!-- Payment Section -->
         <tr>
           <td><b>Payment Method:</b></td>
           <td>
-            <select name="paymentmethod" required>
+            <select name="paymentmethod" id="paymentMethod" required>
               <option value="">--Select Payment Method--</option>
               <option value="card">Credit / Debit Card</option>
               <option value="netbanking">Net Banking</option>
@@ -84,22 +81,46 @@
           </td>
         </tr>
 
-        <tr>
-          <td><b>Name on Card:</b></td>
-          <td><input type="text" name="cardname"></td>
-        </tr>
-        <tr>
-          <td><b>Card Number:</b></td>
-          <td><input type="text" name="cardnumber"></td>
-        </tr>
-        <tr>
-          <td><b>Expiration Date:</b></td>
-          <td><input type="month" name="expdate"></td>
-        </tr>
-        <tr>
-          <td><b>CVV:</b></td>
-          <td><input type="password" name="cvv" maxlength="4"></td>
-        </tr>
+        <tbody id="cardFields" style="display:none;">
+          <tr>
+            <td><b>Name on Card:</b></td>
+            <td><input type="text" id="cardname" name="cardname"></td>
+          </tr>
+          <tr>
+            <td><b>Card Number:</b></td>
+            <td><input type="text" id="cardnumber" name="cardnumber" inputmode="numeric" pattern="\d{13,19}"></td>
+          </tr>
+          <tr>
+            <td><b>Expiration Date:</b></td>
+            <td><input type="month" id="expdate" name="expdate"></td>
+          </tr>
+          <tr>
+            <td><b>CVV:</b></td>
+            <td><input type="password" id="cvv" name="cvv" maxlength="4" inputmode="numeric" pattern="\d{3,4}"></td>
+          </tr>
+        </tbody>
+
+        <tbody id="netbankingFields" style="display:none;">
+          <tr>
+            <td><b>Bank Name:</b></td>
+            <td><input type="text" id="bankname" name="bankname"></td>
+          </tr>
+          <tr>
+            <td><b>Account Number:</b></td>
+            <td><input type="text" id="accountnumber" name="accountnumber"></td>
+          </tr>
+          <tr>
+            <td><b>IFSC Code:</b></td>
+            <td><input type="text" id="ifsc" name="ifsc"></td>
+          </tr>
+        </tbody>
+
+        <tbody id="upiFields" style="display:none;">
+          <tr>
+            <td><b>UPI ID:</b></td>
+            <td><input type="text" id="upiid" name="upiid"></td>
+          </tr>
+        </tbody>
 
         <tr>
           <td colspan="2" align="center">
@@ -115,6 +136,14 @@
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
       let table = document.getElementById('cartTable');
       let grandTotal = 0;
+      table.innerHTML = `
+        <tr>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      `;
       cart.forEach(item => {
         let row = table.insertRow();
         row.insertCell(0).innerText = item.name;
@@ -126,6 +155,37 @@
       });
       document.getElementById('grandTotal').innerText = "Grand Total: ₹" + grandTotal;
     }
+
+    function togglePaymentFields() {
+      let pm = document.getElementById('paymentMethod').value;
+      document.getElementById('cardFields').style.display = pm==='card' ? '' : 'none';
+      document.getElementById('netbankingFields').style.display = pm==='netbanking' ? '' : 'none';
+      document.getElementById('upiFields').style.display = pm==='upi' ? '' : 'none';
+
+      document.getElementById('cardname').required = pm==='card';
+      document.getElementById('cardnumber').required = pm==='card';
+      document.getElementById('expdate').required = pm==='card';
+      document.getElementById('cvv').required = pm==='card';
+
+      document.getElementById('bankname').required = pm==='netbanking';
+      document.getElementById('accountnumber').required = pm==='netbanking';
+      document.getElementById('ifsc').required = pm==='netbanking';
+
+      document.getElementById('upiid').required = pm==='upi';
+    }
+
+    document.getElementById('paymentMethod').addEventListener('change', togglePaymentFields);
+
+    document.getElementById('paymentForm').addEventListener('submit', function(e) {
+      let pm = document.getElementById('paymentMethod').value;
+      if(pm==='') { e.preventDefault(); alert('Select a payment method'); return; }
+      if(pm==='card') {
+        let cardnumber = document.getElementById('cardnumber').value.trim();
+        let cvv = document.getElementById('cvv').value.trim();
+        if(!/^\d{13,19}$/.test(cardnumber)) { e.preventDefault(); alert('Invalid card number'); return; }
+        if(!/^\d{3,4}$/.test(cvv)) { e.preventDefault(); alert('Invalid CVV'); return; }
+      }
+    });
 
     displayCart();
   </script>
