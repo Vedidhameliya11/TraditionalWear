@@ -33,6 +33,7 @@
         <th>Price</th>
         <th>Quantity</th>
         <th>Total</th>
+        <th>Action</th>
       </tr>
     </table>
     <h3 id="grandTotal">Grand Total: ₹0</h3>
@@ -44,16 +45,37 @@
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
       let table = document.getElementById('cartTable');
       let grandTotal = 0;
-      cart.forEach(item => {
+      table.innerHTML = `
+        <tr>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      `;
+      cart.forEach((item, index) => {
         let row = table.insertRow();
         row.insertCell(0).innerText = item.name;
         row.insertCell(1).innerText = "₹" + item.price;
         row.insertCell(2).innerText = item.quantity;
         let total = item.price * item.quantity;
         row.insertCell(3).innerText = "₹" + total;
+        let removeCell = row.insertCell(4);
+        let removeBtn = document.createElement('button');
+        removeBtn.textContent = "Remove";
+        removeBtn.onclick = () => removeItem(index);
+        removeCell.appendChild(removeBtn);
         grandTotal += total;
       });
       document.getElementById('grandTotal').innerText = "Grand Total: ₹" + grandTotal;
+    }
+
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      displayCart();
     }
 
     function proceedToPayment() {
